@@ -1,0 +1,40 @@
+# Environment Variables
+.env
+
+# Ignorar archivos y carpetas de salida de compilación
+/bin/
+/obj/
+
+# Ignorar archivos generados por las pruebas
+/TestResults/
+
+# Ignorar paquetes de NuGet descargados localmente
+**/packages/*
+!**/packages/build/
+
+# Ignorar archivos de configuración de usuario
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Ignorar configuraciones de Rider
+.idea/
+*.sln.iml
+
+# Ignorar archivos de entorno de VSCode
+.vscode/
+
+# Ignorar archivos de entorno de Visual Studio
+.vscode/
+.vs/
+.vscode/*
+.vs/TestProject/
+
+# Ignorar archivos generados por dotnet test
+/TestResults/
+coverage/
+*.coverage
+*.coveragexml
+*.trx
+*.opencover.xml
