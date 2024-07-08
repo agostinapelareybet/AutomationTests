@@ -45,7 +45,7 @@ namespace logInTests
 			loginPage.txtPassword.SendKeys(EnvironmentVariables.Password);
 
 			loginPage.btnLogin.Click();
-			Assert.AreEqual(PageTitles.Products, productsPage.txaProductsTitle.Text);
+			Assert.AreEqual(productsPage.txaProductsTitle.Text, PageTitles.Products);
 		}
 
         [TearDown]
