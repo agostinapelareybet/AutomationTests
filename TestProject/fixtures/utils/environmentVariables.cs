@@ -1,28 +1,11 @@
 using System;
 
-public static class EnvironmentVariables
+public class EnvironmentVariables
 {
-    public static string BaseUrl
-    {
-        get
-        {
-            return Environment.GetEnvironmentVariable("BASE_URL");
-        }
-    }
+    public static string BaseUrl => Environment.GetEnvironmentVariable("BASE_URL") ?? "Default";
 
-    public static string UserName
-    {
-        get
-        {
-            return Environment.GetEnvironmentVariable("USER_NAME");
-        }
-    }
+    public static string? UserName => Environment.GetEnvironmentVariable("USER_NAME");
 
-    public static string Password
-    {
-        get
-        {
-            return Environment.GetEnvironmentVariable("PASSWORD");
-        }
-    }
+    public static string? Password => Environment.GetEnvironmentVariable("PASSWORD");
 }
+    
