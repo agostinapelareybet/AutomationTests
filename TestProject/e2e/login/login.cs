@@ -35,13 +35,6 @@ namespace logInTests
             loginPage = new LoginPage(driver);
             randomUserName = EnvironmentVariables.GetValidUserName();
         }
-        //{
-        //    new DriverManager().SetUpDriver(new ChromeConfig());
-        //    driver = new ChromeDriver();
-        //    driver.Navigate().GoToUrl(EnvironmentVariables.BaseUrl);
-        //    loginPage = new LoginPage(driver);
-        //    randomUserName = EnvironmentVariables.GetValidUserName();
-        //}
 
         [Test, Order(1)]
         public void LoginWithValidCredentials()
