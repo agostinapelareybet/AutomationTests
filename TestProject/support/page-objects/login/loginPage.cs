@@ -11,23 +11,25 @@ namespace SeleniumTests.PageObjects
             driver = webDriver;
         }
 
-        private IWebElement txtUsername => driver.FindElement(By.CssSelector("[data-test='username']"));
+        private IWebElement UsernameInput => driver.FindElement(By.CssSelector("[data-test='username']"));
 
-        public IWebElement txtPassword => driver.FindElement(By.CssSelector("[data-test='password']"));
+        public IWebElement PasswordInput => driver.FindElement(By.CssSelector("[data-test='password']"));
 
-        public IWebElement btnLogin => driver.FindElement(By.CssSelector(".btn_action"));
+        public IWebElement LoginButton => driver.FindElement(By.CssSelector(".btn_action"));
+
+        public IWebElement ErrorMesage => driver.FindElement(By.CssSelector("[data-test=error]"));
 
         public ProductsPage Login(string username, string password)
         {
-            txtUsername.Click();
-            txtUsername.Clear();
-            txtUsername.SendKeys(username);
+            UsernameInput.Click();
+            UsernameInput.Clear();
+            UsernameInput.SendKeys(username);
 
-            txtPassword.Click();
-            txtPassword.Clear();
-            txtPassword.SendKeys(password);
+            PasswordInput.Click();
+            PasswordInput.Clear();
+            PasswordInput.SendKeys(password);
 
-            btnLogin.Click();
+            LoginButton.Click();
             return new ProductsPage(driver);
         }
     }

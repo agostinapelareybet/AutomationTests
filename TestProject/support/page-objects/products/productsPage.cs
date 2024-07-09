@@ -11,6 +11,6 @@ namespace SeleniumTests.PageObjects
             driver = webDriver;
         }
 
-        public IWebElement txaProductsTitle => driver.FindElement(By.CssSelector(".product_label"));
+        public IWebElement ProductsTitle => driver.FindElement(By.CssSelector(".product_label"));
     }
 }
