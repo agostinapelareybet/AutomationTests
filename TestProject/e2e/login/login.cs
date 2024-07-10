@@ -39,24 +39,20 @@ namespace logInTests
         [Test, Order(1)]
         public void LoginWithValidCredentials()
         {
-
-            driver.Navigate().GoToUrl(EnvironmentVariables.BaseUrl);
             productsPage = loginPage.Login(randomUserName, EnvironmentVariables.Password);
             Assert.That(productsPage.ProductsTitle.Text, Is.EqualTo(PageTitles.Products));
         }
 
         [Test, Order(2)]
-        public void LoginWithInvalidUsername()
+        public void loginwithinvalidusername()
         {
-            driver.Navigate().GoToUrl(EnvironmentVariables.BaseUrl);
-            productsPage = loginPage.Login("Invalid", EnvironmentVariables.Password);
+            productsPage = loginPage.Login("invalid", EnvironmentVariables.Password);
             Assert.That(loginPage.ErrorMesage.Text, Is.EqualTo(ErrorMessages.LoginErrorMessage));
         }
 
         [Test, Order(3)]
         public void LoginWithoutUsername()
         {
-            driver.Navigate().GoToUrl(EnvironmentVariables.BaseUrl);
             productsPage = loginPage.Login("", EnvironmentVariables.Password);
             Assert.That(loginPage.ErrorMesage.Text, Is.EqualTo(ErrorMessages.UsernameRequiredMessage));
         }
@@ -64,7 +60,6 @@ namespace logInTests
         [Test, Order(4)]
         public void LoginWithoutPassword()
         {
-            driver.Navigate().GoToUrl(EnvironmentVariables.BaseUrl);
             productsPage = loginPage.Login(randomUserName, "");
             Assert.That(loginPage.ErrorMesage.Text, Is.EqualTo(ErrorMessages.PasswordRequiredMessage));
         }
@@ -72,7 +67,6 @@ namespace logInTests
         [Test, Order(5)]
         public void LoginWithoutCredentials()
         {
-            driver.Navigate().GoToUrl(EnvironmentVariables.BaseUrl);
             productsPage = loginPage.Login("", "");
             Assert.That(loginPage.ErrorMesage.Text, Is.EqualTo(ErrorMessages.UsernameRequiredMessage));
         }
