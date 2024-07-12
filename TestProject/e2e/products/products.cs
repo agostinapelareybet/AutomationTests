@@ -43,6 +43,15 @@ namespace productsTests
 
         }
 
+        [Test, Order(2)]
+        public void SortProductsHighToLow()
+        {
+            productsPage.NavigateProducts(productsUrl);
+            productsPage.SortDropdown.Click();
+            IWebElement highToLowOption = driver.FindElement(By.XPath("//option[@value='hilo']"));
+            highToLowOption.Click();
+        }
+
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {

@@ -9,6 +9,7 @@ namespace SeleniumTests.PageObjects
         public IWebElement AddToCartButton => driver.FindElement(By.CssSelector("button.btn_primary.btn_inventory:first-of-type"));
         public IWebElement RemoveButton => driver.FindElement(By.CssSelector(".btn_secondary.btn_inventory"));
         public IWebElement AppHeader => driver.FindElement(By.CssSelector(".app_logo"));
+        public IWebElement SortDropdown => driver.FindElement(By.CssSelector(".product_sort_container"));
 
         private readonly IWebDriver driver;
         public ProductsPage(IWebDriver webDriver)
