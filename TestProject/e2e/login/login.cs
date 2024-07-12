@@ -8,7 +8,7 @@ using DotNetEnv;
 namespace logInTests
 {
     [TestFixture]
-    public class SauceDemoTests
+    public class LogInTests
     {
         private IWebDriver driver;
         private LoginPage loginPage;
@@ -31,9 +31,10 @@ namespace logInTests
         [SetUp]
         public void SetUp()
         {
-            driver.Navigate().GoToUrl(EnvironmentVariables.BaseUrl);
             loginPage = new LoginPage(driver);
-            randomUserName = EnvironmentVariables.GetValidUserName();
+            productsPage = new ProductsPage(driver);
+            driver.Navigate().GoToUrl(EnvironmentVariables.BaseUrl);
+            randomUserName = EnvironmentVariables.GetValidUserName();            
         }
 
         [Test, Order(1)]

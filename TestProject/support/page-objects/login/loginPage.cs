@@ -11,13 +11,10 @@ namespace SeleniumTests.PageObjects
             driver = webDriver;
         }
 
-        private IWebElement UsernameInput => driver.FindElement(By.CssSelector("[data-test='username']"));
-
-        public IWebElement PasswordInput => driver.FindElement(By.CssSelector("[data-test='password']"));
-
         public IWebElement LoginButton => driver.FindElement(By.CssSelector(".btn_action"));
-
         public IWebElement ErrorMesage => driver.FindElement(By.CssSelector("[data-test=error]"));
+        private IWebElement UsernameInput => driver.FindElement(By.CssSelector("[data-test='username']"));
+        public IWebElement PasswordInput => driver.FindElement(By.CssSelector("[data-test='password']"));
 
         public ProductsPage Login(string username, string password)
         {
