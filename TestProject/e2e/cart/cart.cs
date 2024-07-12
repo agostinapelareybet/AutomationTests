@@ -5,14 +5,18 @@ using WebDriverManager.DriverConfigs.Impl;
 using SeleniumTests.PageObjects;
 using DotNetEnv;
 
-namespace productsTests
+namespace inventoryTests
 {
     [TestFixture]
-    public class ProductsTests
+    public class CartTests
     {
         private IWebDriver driver;
+        private LoginPage loginPage;
         private CommonsPage commonsPage;
         private ProductsPage productsPage;
+        private CartPage cartPage;
+
+        private string randomUserName;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -22,33 +26,32 @@ namespace productsTests
             Env.Load(envFilePath);
 
             new DriverManager().SetUpDriver(new ChromeConfig());
-            var chromeOptions = new ChromeOptions();
-            driver = new ChromeDriver(chromeOptions);
+            driver = new ChromeDriver();
+            driver.Manage().Window.Maximize();
         }
 
         [SetUp]
         public void SetUp()
         {
+            cartPage = new CartPage(driver);
+            loginPage = new LoginPage(driver);
             commonsPage = new CommonsPage(driver);
             productsPage = new ProductsPage(driver);
-            driver.Navigate().GoToUrl(EnvironmentVariables.ProductsUrl);
+            randomUserName = EnvironmentVariables.GetValidUserName();
         }
 
         [Test, Order(1)]
         public void AddProductToCart()
         {
+            driver.Navigate().GoToUrl(EnvironmentVariables.BaseUrl);
+            productsPage = loginPage.Login(randomUserName, EnvironmentVariables.Password);
             productsPage.AddToCartButton.Click();
-            Assert.That(commonsPage.CartBadgeIcon.Displayed, Is.True);
-            Assert.That(commonsPage.RemoveButton.Text.Trim(), Is.EqualTo("REMOVE"));
 
-        }
+            commonsPage.CartBadgeIcon.Click();
+            Assert.That(cartPage.YourCartTitle.Text, Is.EqualTo(PageTitles.YourCart));
+            Assert.That(commonsPage.FirstProductName.Text, Is.EqualTo(ProductNames.productName));
+            Assert.That(cartPage.CartRemoveButton.Text, Is.EqualTo("REMOVE"));
 
-        [Test, Order(2)]
-        public void SortProductsHighToLow()
-        {
-            productsPage.SortDropdown.Click();
-            IWebElement highToLowOption = driver.FindElement(By.XPath("//option[@value='hilo']"));
-            highToLowOption.Click();
         }
 
         [OneTimeTearDown]
