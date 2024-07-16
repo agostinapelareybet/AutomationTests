@@ -54,6 +54,23 @@ namespace inventoryTests
 
         }
 
+
+        [Test, Order(2)]
+        public void ContinueShopping()
+     {      
+            driver.Navigate().GoToUrl(EnvironmentVariables.BaseUrl);
+            productsPage = loginPage.Login(randomUserName, EnvironmentVariables.Password);
+            productsPage.AddToCartButton.Click();
+            commonsPage.CartBadgeIcon.Click();
+            Assert.That(cartPage.YourCartTitle.Text, Is.EqualTo(PageTitles.YourCart));
+            Assert.NotNull(commonsPage.ContinueButton);
+            commonsPage.ContinueButton.Click();
+            productsPage.AddToCartButton.Click();
+            Assert.That(commonsPage.CartBadgeIcon.Displayed, Is.True);
+            Assert.That(commonsPage.RemoveButton.Text.Trim(), Is.EqualTo("REMOVE"));
+            
+        }
+
         [OneTimeTearDown]
         public void OneTimeTearDown()
         {

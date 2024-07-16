@@ -4,6 +4,7 @@ using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
 using SeleniumTests.PageObjects;
 using DotNetEnv;
+using OpenQA.Selenium.DevTools.V124.Browser;
 
 namespace productsTests
 {
@@ -13,6 +14,7 @@ namespace productsTests
         private IWebDriver driver;
         private CommonsPage commonsPage;
         private ProductsPage productsPage;
+         private CartPage cartPage;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -50,6 +52,8 @@ namespace productsTests
             IWebElement highToLowOption = driver.FindElement(By.XPath("//option[@value='hilo']"));
             highToLowOption.Click();
         }
+
+
 
         [OneTimeTearDown]
         public void OneTimeTearDown()
