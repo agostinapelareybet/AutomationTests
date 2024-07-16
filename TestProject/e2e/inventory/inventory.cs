@@ -7,14 +7,17 @@ using DotNetEnv;
 
 namespace inventoryTests
 {
+    using TestProject.support.page_objects.commons;
+    using TestProject.support.page_objects.products;
+
     [TestFixture]
     public class InventoryTests
     {
         private IWebDriver driver;
         private LoginPage loginPage;
-        private CommonsPage commonsPage;
+        private PageBase _pageBase;
         private ProductsPage productsPage;
-        private InventoryPage inventoryPage;
+        private InventoryPage _inventoryPage;
 
         private string randomUserName;
 
@@ -34,9 +37,9 @@ namespace inventoryTests
         public void SetUp()
         {
             loginPage = new LoginPage(driver);
-            commonsPage = new CommonsPage(driver);
+            _pageBase = new PageBase(driver);
             productsPage = new ProductsPage(driver);
-            inventoryPage = new InventoryPage(driver, commonsPage);
+            _inventoryPage = new InventoryPage(driver, _pageBase);
             randomUserName = EnvironmentVariables.GetValidUserName();
 
         }
@@ -49,10 +52,10 @@ namespace inventoryTests
             productsPage = loginPage.Login(randomUserName, EnvironmentVariables.Password);
             Assert.That(productsPage.ProductsTitle.Text, Is.EqualTo(PageTitles.Products));
 
-            inventoryPage = inventoryPage.AddProductToCart();
-            Assert.That(inventoryPage.AppHeader.Displayed, Is.True);
-            Assert.That(commonsPage.RemoveButton.Text.Trim(), Is.EqualTo("REMOVE")); // Sometimes fails because the text is not changing after clicking the button.
-            Assert.That(commonsPage.CartBadgeIcon.Displayed, Is.True);
+            _inventoryPage = _inventoryPage.AddProductToCart();
+            Assert.That(_inventoryPage.AppHeader.Displayed, Is.True);
+            Assert.That(_pageBase.RemoveButton.Text.Trim(), Is.EqualTo("REMOVE")); // Sometimes fails because the text is not changing after clicking the button.
+            Assert.That(_pageBase.CartBadgeIcon.Displayed, Is.True);
         }
 
         [Test, Order(2)]
@@ -61,18 +64,18 @@ namespace inventoryTests
             driver.Navigate().GoToUrl(EnvironmentVariables.ProductsUrl);
             Assert.That(productsPage.ProductsTitle.Text, Is.EqualTo(PageTitles.Products));
 
-            commonsPage.FirstProductName.Click();
-            Assert.That(inventoryPage.AppHeader.Displayed, Is.True);
-            Assert.That(inventoryPage.ProductDetails.Text, Is.EqualTo(ProductNames.productName));
+            _pageBase.FirstProductName.Click();
+            Assert.That(_inventoryPage.AppHeader.Displayed, Is.True);
+            Assert.That(_inventoryPage.ProductDetails.Text, Is.EqualTo(ProductNames.productName));
         }
 
         [Test, Order(3)]
         public void BackButtonRedirection()
         {
             driver.Navigate().GoToUrl(EnvironmentVariables.ProductsUrl);
-            commonsPage.FirstProductName.Click();
+            _pageBase.FirstProductName.Click();
 
-            inventoryPage.BackButton.Click();
+            _inventoryPage.BackButton.Click();
             Assert.That(driver.Url, Is.EqualTo(EnvironmentVariables.ProductsUrl));
             Assert.That(productsPage.ProductsTitle.Text, Is.EqualTo(PageTitles.Products));
 

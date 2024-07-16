@@ -2,6 +2,8 @@ using OpenQA.Selenium;
 
 namespace SeleniumTests.PageObjects
 {
+    using TestProject.support.page_objects.products;
+
     public class LoginPage
     {
         private readonly IWebDriver driver;

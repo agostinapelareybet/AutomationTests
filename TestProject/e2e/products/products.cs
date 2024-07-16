@@ -4,15 +4,18 @@ using WebDriverManager;
 using WebDriverManager.DriverConfigs.Impl;
 using SeleniumTests.PageObjects;
 using DotNetEnv;
-using OpenQA.Selenium.DevTools.V124.Browser;
 
 namespace productsTests
 {
+    using TestProject.support.page_objects.cart;
+    using TestProject.support.page_objects.commons;
+    using TestProject.support.page_objects.products;
+
     [TestFixture]
     public class ProductsTests
     {
         private IWebDriver driver;
-        private CommonsPage commonsPage;
+        private PageBase _pageBase;
         private ProductsPage productsPage;
          private CartPage cartPage;
 
@@ -31,7 +34,6 @@ namespace productsTests
         [SetUp]
         public void SetUp()
         {
-            commonsPage = new CommonsPage(driver);
             productsPage = new ProductsPage(driver);
             driver.Navigate().GoToUrl(EnvironmentVariables.ProductsUrl);
         }
@@ -40,8 +42,8 @@ namespace productsTests
         public void AddProductToCart()
         {
             productsPage.AddToCartButton.Click();
-            Assert.That(commonsPage.CartBadgeIcon.Displayed, Is.True);
-            Assert.That(commonsPage.RemoveButton.Text.Trim(), Is.EqualTo("REMOVE"));
+            Assert.That(productsPage.CartBadgeIcon.Displayed, Is.True);
+            Assert.That(productsPage.RemoveButton.Text.Trim(), Is.EqualTo("REMOVE"));
 
         }
 

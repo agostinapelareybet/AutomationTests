@@ -1,29 +1,25 @@
-using OpenQA.Selenium;
-
-namespace SeleniumTests.PageObjects
+namespace TestProject.support.page_objects.products
 {
-    public class ProductsPage
+    using OpenQA.Selenium;
+    using commons;
+
+    public class ProductsPage(IWebDriver webDriver) : PageBase(webDriver)
     {
+        private readonly IWebDriver _driver = webDriver;
 
-        private readonly IWebDriver driver;
-        public ProductsPage(IWebDriver webDriver)
-        {
-            driver = webDriver;
-        }
 
-        public IWebElement AppHeader => driver.FindElement(By.CssSelector(".app_logo"));
-        public IWebElement ProductsTitle => driver.FindElement(By.CssSelector(".product_label"));
-        public IWebElement SortDropdown => driver.FindElement(By.CssSelector(".product_sort_container"));
-        public IWebElement AddToCartButton => driver.FindElement(By.CssSelector("button.btn_primary.btn_inventory:first-of-type"));
-        public IWebElement searchbox => driver.FindElement(By.CssSelector("[product_sort_container']"));
+        public IWebElement AppHeader => _driver.FindElement(By.CssSelector(".app_logo"));
+        public IWebElement ProductsTitle => _driver.FindElement(By.CssSelector(".product_label"));
+        public IWebElement SortDropdown => _driver.FindElement(By.CssSelector(".product_sort_container"));
+        public IWebElement AddToCartButton => _driver.FindElement(By.CssSelector("button.btn_primary.btn_inventory:first-of-type"));
 
         public ProductsPage NavigateProducts(string baseurl)
         {
-            driver.Navigate().GoToUrl(baseurl);
+            _driver.Navigate().GoToUrl(baseurl);
             Assert.That(ProductsTitle.Text, Is.EqualTo(PageTitles.Products));
             Assert.That(AppHeader.Displayed, Is.True);
 
-            return new ProductsPage(driver);
+            return new ProductsPage(_driver);
         }
     }
 }

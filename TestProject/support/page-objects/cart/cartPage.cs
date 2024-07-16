@@ -1,17 +1,10 @@
-﻿using OpenQA.Selenium;
-
-
-namespace SeleniumTests.PageObjects
+﻿namespace TestProject.support.page_objects.cart
 {
-    public class CartPage
-    {
-        private readonly IWebDriver driver;
+    using OpenQA.Selenium;
 
-        public CartPage(IWebDriver webDriver)
-        {
-            driver = webDriver;
-        }
-        public IWebElement CartRemoveButton => driver.FindElement(By.CssSelector(".cart_button"));
-        public IWebElement YourCartTitle => driver.FindElement(By.CssSelector(".subheader"));
+    public class CartPage(IWebDriver webDriver)
+    {
+        public IWebElement CartRemoveButton => webDriver.FindElement(By.CssSelector(".cart_button"));
+        public IWebElement YourCartTitle => webDriver.FindElement(By.CssSelector(".subheader"));
     }
 }

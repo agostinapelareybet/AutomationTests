@@ -7,12 +7,16 @@ using DotNetEnv;
 
 namespace inventoryTests
 {
+    using TestProject.support.page_objects.cart;
+    using TestProject.support.page_objects.commons;
+    using TestProject.support.page_objects.products;
+
     [TestFixture]
     public class CartTests
     {
         private IWebDriver driver;
         private LoginPage loginPage;
-        private CommonsPage commonsPage;
+        private PageBase _pageBase;
         private ProductsPage productsPage;
         private CartPage cartPage;
 
@@ -35,7 +39,7 @@ namespace inventoryTests
         {
             cartPage = new CartPage(driver);
             loginPage = new LoginPage(driver);
-            commonsPage = new CommonsPage(driver);
+            _pageBase = new PageBase(driver);
             productsPage = new ProductsPage(driver);
             randomUserName = EnvironmentVariables.GetValidUserName();
         }
@@ -47,9 +51,9 @@ namespace inventoryTests
             productsPage = loginPage.Login(randomUserName, EnvironmentVariables.Password);
             productsPage.AddToCartButton.Click();
 
-            commonsPage.CartBadgeIcon.Click();
+            _pageBase.CartBadgeIcon.Click();
             Assert.That(cartPage.YourCartTitle.Text, Is.EqualTo(PageTitles.YourCart));
-            Assert.That(commonsPage.FirstProductName.Text, Is.EqualTo(ProductNames.productName));
+            Assert.That(_pageBase.FirstProductName.Text, Is.EqualTo(ProductNames.productName));
             Assert.That(cartPage.CartRemoveButton.Text, Is.EqualTo("REMOVE"));
 
         }
@@ -61,13 +65,13 @@ namespace inventoryTests
             driver.Navigate().GoToUrl(EnvironmentVariables.BaseUrl);
             productsPage = loginPage.Login(randomUserName, EnvironmentVariables.Password);
             productsPage.AddToCartButton.Click();
-            commonsPage.CartBadgeIcon.Click();
+            _pageBase.CartBadgeIcon.Click();
             Assert.That(cartPage.YourCartTitle.Text, Is.EqualTo(PageTitles.YourCart));
-            Assert.NotNull(commonsPage.ContinueButton);
-            commonsPage.ContinueButton.Click();
+            Assert.NotNull(_pageBase.ContinueButton);
+            _pageBase.ContinueButton.Click();
             productsPage.AddToCartButton.Click();
-            Assert.That(commonsPage.CartBadgeIcon.Displayed, Is.True);
-            Assert.That(commonsPage.RemoveButton.Text.Trim(), Is.EqualTo("REMOVE"));
+            Assert.That(_pageBase.CartBadgeIcon.Displayed, Is.True);
+            Assert.That(_pageBase.RemoveButton.Text.Trim(), Is.EqualTo("REMOVE"));
             
         }
 
