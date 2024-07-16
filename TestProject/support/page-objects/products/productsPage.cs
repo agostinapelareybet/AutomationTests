@@ -15,6 +15,7 @@ namespace SeleniumTests.PageObjects
         public IWebElement ProductsTitle => driver.FindElement(By.CssSelector(".product_label"));
         public IWebElement SortDropdown => driver.FindElement(By.CssSelector(".product_sort_container"));
         public IWebElement AddToCartButton => driver.FindElement(By.CssSelector("button.btn_primary.btn_inventory:first-of-type"));
+        public IWebElement searchbox => driver.FindElement(By.CssSelector("[product_sort_container']"));
 
         public ProductsPage NavigateProducts(string baseurl)
         {
