@@ -1,13 +1,10 @@
 namespace TestProject.support.page_objects.products
 {
     using OpenQA.Selenium;
-    using commons;
-
+    using pageBase;
     public class ProductsPage(IWebDriver webDriver) : PageBase(webDriver)
     {
         private readonly IWebDriver _driver = webDriver;
-
-
         public IWebElement AppHeader => _driver.FindElement(By.CssSelector(".app_logo"));
         public IWebElement ProductsTitle => _driver.FindElement(By.CssSelector(".product_label"));
         public IWebElement SortDropdown => _driver.FindElement(By.CssSelector(".product_sort_container"));

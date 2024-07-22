@@ -1,19 +1,22 @@
-public class EnvironmentVariables
+namespace TestProject.support
 {
-    public static string BaseUrl => Environment.GetEnvironmentVariable("BASE_URL") ?? "Default";
-
-    public static string ProductsUrl => Environment.GetEnvironmentVariable("PRODUCTS_URL") ?? "Default";
-
-    public static string Password => Environment.GetEnvironmentVariable("PASSWORD") ?? "";
-
-    public static string GetValidUserName()
+    public class EnvironmentVariables
     {
-        string userNames = Environment.GetEnvironmentVariable("USER_NAMES") ?? "";
+        public static string BaseUrl => Environment.GetEnvironmentVariable("BASE_URL") ?? "Default";
 
-        var userNameList = userNames.Split(',').ToList();
-        Random random = new Random();
-        int index = random.Next(userNameList.Count);
-        return userNameList[index].Trim();
+        public static string ProductsUrl => Environment.GetEnvironmentVariable("PRODUCTS_URL") ?? "Default";
+
+        public static string Password => Environment.GetEnvironmentVariable("PASSWORD") ?? "";
+
+        public static string GetValidUserName()
+        {
+            var userNames = Environment.GetEnvironmentVariable("USER_NAMES") ?? "";
+
+            var userNameList = userNames.Split(',').ToList();
+            var random = new Random();
+            var index = random.Next(userNameList.Count);
+            return userNameList[index].Trim();
+        }
     }
-}
 
+}
