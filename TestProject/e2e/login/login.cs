@@ -1,86 +1,47 @@
+
 namespace TestProject.e2e.login
 {
-    using DotNetEnv;
-    using OpenQA.Selenium;
-    using OpenQA.Selenium.Chrome;
-    using SeleniumTests.PageObjects;
-    using support.page_objects.products;
-    using WebDriverManager;
-    using WebDriverManager.DriverConfigs.Impl;
+    using support;
+    using support.page_objects.testBasePage;
+    using NUnit.Framework;
 
-    [TestFixture]
-    public class LogInTests
+    public class LogInTests : TestBasePage
     {
-        private IWebDriver _driver;
-        private LoginPage loginPage;
-        private ProductsPage productsPage;
-        private string randomUserName;
 
-
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
-        {
-            var projectDir = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.FullName;
-            if (projectDir != null)
-            {
-                var envFilePath = Path.Combine(projectDir, ".env");
-                Env.Load(envFilePath);
-            }
-
-            new DriverManager().SetUpDriver(new ChromeConfig());
-            _driver = new ChromeDriver();
-            _driver.Manage().Window.Maximize();
-        }
-
-        [SetUp]
-        public void SetUp()
-        {
-            loginPage = new LoginPage(_driver);
-            productsPage = new ProductsPage(_driver);
-            _driver.Navigate().GoToUrl(EnvironmentVariables.BaseUrl);
-            randomUserName = EnvironmentVariables.GetValidUserName();            
-        }
-
-        [Test, Order(1)]
+        [Test]
         public void LoginWithValidCredentials()
         {
-            productsPage = loginPage.Login(randomUserName, EnvironmentVariables.Password);
-            Assert.That(productsPage.ProductsTitle.Text, Is.EqualTo(PageTitles.Products));
+            LoginPage?.Login(RandomUserName, EnvironmentVariables.Password);
+            Assert.That(ProductsPage?.ProductsTitle.Text, Is.EqualTo(PageTitles.Products));
         }
 
-        [Test, Order(2)]
+        [Test]
         public void LoginWithInvalidUsername()
         {
-            productsPage = loginPage.Login("invalid", EnvironmentVariables.Password);
-            Assert.That(loginPage.ErrorMesage.Text, Is.EqualTo(ErrorMessages.LoginErrorMessage));
+            LoginPage?.Login("invalid", EnvironmentVariables.Password);
+            Assert.That(LoginPage?.ErrorMessage.Text, Is.EqualTo(ErrorMessages.LoginErrorMessage));
         }
 
-        [Test, Order(3)]
+        [Test]
         public void LoginWithoutUsername()
         {
-            productsPage = loginPage.Login("", EnvironmentVariables.Password);
-            Assert.That(loginPage.ErrorMesage.Text, Is.EqualTo(ErrorMessages.UsernameRequiredMessage));
+            LoginPage?.Login("", EnvironmentVariables.Password);
+            Assert.That(LoginPage?.ErrorMessage.Text, Is.EqualTo(ErrorMessages.UsernameRequiredMessage));
         }
 
-        [Test, Order(4)]
+        [Test]
         public void LoginWithoutPassword()
         {
-            productsPage = loginPage.Login(randomUserName, "");
-            Assert.That(loginPage.ErrorMesage.Text, Is.EqualTo(ErrorMessages.PasswordRequiredMessage));
+            LoginPage?.Login(RandomUserName, "");
+            Assert.That(LoginPage?.ErrorMessage.Text, Is.EqualTo(ErrorMessages.PasswordRequiredMessage));
         }
 
-        [Test, Order(5)]
+        [Test]
         public void LoginWithoutCredentials()
         {
-            productsPage = loginPage.Login("", "");
-            Assert.That(loginPage.ErrorMesage.Text, Is.EqualTo(ErrorMessages.UsernameRequiredMessage));
+            LoginPage?.Login(RandomUserName, "");
+            Assert.That(LoginPage?.ErrorMessage.Text, Is.EqualTo(ErrorMessages.PasswordRequiredMessage));
         }
 
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
-        {
-            _driver.Quit();
-            _driver.Dispose();
-        }
     }
 }

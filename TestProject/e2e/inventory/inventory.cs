@@ -1,94 +1,50 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using WebDriverManager;
-using WebDriverManager.DriverConfigs.Impl;
-using SeleniumTests.PageObjects;
-using DotNetEnv;
-
-namespace inventoryTests
+﻿
+namespace TestProject.e2e.inventory
 {
-    using TestProject.support.page_objects.commons;
-    using TestProject.support.page_objects.products;
+    using support;
+    using OpenQA.Selenium;
+    using support.page_objects.testBasePage;
 
-    [TestFixture]
-    public class InventoryTests
+    public class InventoryTests : TestBasePage
     {
-        private IWebDriver driver;
-        private LoginPage loginPage;
-        private PageBase _pageBase;
-        private ProductsPage productsPage;
-        private InventoryPage _inventoryPage;
 
-        private string randomUserName;
-
-        [OneTimeSetUp]
-        public void OneTimeSetUp()
-        {
-            string projectDir = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName;
-            string envFilePath = Path.Combine(projectDir, ".env");
-            Env.Load(envFilePath);
-
-            new DriverManager().SetUpDriver(new ChromeConfig());
-            driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
-        }
-
-        [SetUp]
-        public void SetUp()
-        {
-            loginPage = new LoginPage(driver);
-            _pageBase = new PageBase(driver);
-            productsPage = new ProductsPage(driver);
-            _inventoryPage = new InventoryPage(driver, _pageBase);
-            randomUserName = EnvironmentVariables.GetValidUserName();
-
-        }
-
-        [Test, Order(1), Category("FIXME BUG")]
+        [Test]
         public void AddProductToCart()
         {
-            driver.Navigate().GoToUrl(EnvironmentVariables.BaseUrl);
+            LoginPage?.Login(RandomUserName, EnvironmentVariables.Password);
+            Assert.That(ProductsPage?.ProductsTitle.Text, Is.EqualTo(PageTitles.Products));
 
-            productsPage = loginPage.Login(randomUserName, EnvironmentVariables.Password);
-            Assert.That(productsPage.ProductsTitle.Text, Is.EqualTo(PageTitles.Products));
+            InventoryPage?.AddProductToCart();
+            Assert.That(InventoryPage?.AppHeader.Displayed, Is.True);
+            Assert.That(InventoryPage.CartBadgeIcon.Displayed, Is.True);
+            Assert.That(InventoryPage.RemoveButton.Text.Trim(), Is.EqualTo("REMOVE"));
 
-            _inventoryPage = _inventoryPage.AddProductToCart();
-            Assert.That(_inventoryPage.AppHeader.Displayed, Is.True);
-            Assert.That(_pageBase.RemoveButton.Text.Trim(), Is.EqualTo("REMOVE")); // Sometimes fails because the text is not changing after clicking the button.
-            Assert.That(_pageBase.CartBadgeIcon.Displayed, Is.True);
+            InventoryPage.RemoveButton.Click();
+            var removeButtons = Driver.FindElements(By.CssSelector(".btn_secondary.btn_inventory"));
+            Assert.That(removeButtons.Count, Is.EqualTo(0));
         }
 
-        [Test, Order(2)]
+        [Test]
         public void ProductDetails()
         {
-            driver.Navigate().GoToUrl(EnvironmentVariables.ProductsUrl);
-            Assert.That(productsPage.ProductsTitle.Text, Is.EqualTo(PageTitles.Products));
+            Driver.Navigate().GoToUrl(EnvironmentVariables.ProductsUrl);
+            Assert.That(ProductsPage?.ProductsTitle.Text, Is.EqualTo(PageTitles.Products));
 
-            _pageBase.FirstProductName.Click();
-            Assert.That(_inventoryPage.AppHeader.Displayed, Is.True);
-            Assert.That(_inventoryPage.ProductDetails.Text, Is.EqualTo(ProductNames.productName));
+            InventoryPage?.FirstProductName.Click();
+            Assert.That(InventoryPage?.AppHeader.Displayed, Is.True);
+            Assert.That(InventoryPage.ProductDetails.Text, Is.EqualTo(ProductsPage.ProductName));
         }
 
-        [Test, Order(3)]
+        [Test]
         public void BackButtonRedirection()
         {
-            driver.Navigate().GoToUrl(EnvironmentVariables.ProductsUrl);
-            _pageBase.FirstProductName.Click();
+            Driver.Navigate().GoToUrl(EnvironmentVariables.ProductsUrl);
+            InventoryPage?.FirstProductName.Click();
 
-            _inventoryPage.BackButton.Click();
-            Assert.That(driver.Url, Is.EqualTo(EnvironmentVariables.ProductsUrl));
-            Assert.That(productsPage.ProductsTitle.Text, Is.EqualTo(PageTitles.Products));
+            InventoryPage?.BackButton.Click();
+            Assert.That(Driver.Url, Is.EqualTo(EnvironmentVariables.ProductsUrl));
+            Assert.That(ProductsPage?.ProductsTitle.Text, Is.EqualTo(PageTitles.Products));
 
-        }
-
-        [OneTimeTearDown]
-        public void OneTimeTearDown()
-        {
-            if (driver != null)
-            {
-                driver.Quit();
-                driver.Dispose();
-            }
         }
     }
 }
