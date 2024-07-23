@@ -34,15 +34,18 @@ namespace TestProject.support.page_objects.testBasePage
                 Env.Load(envFilePath);
             }
             var options = new ChromeOptions();
-            options.AddArguments(
-                "--no-sandbox",
-                "--headless",
-                "--disable-gpu",
-                "--disable-dev-shm-usage",
-                "--window-size=1920x1080"
-            );
-            Driver = new ChromeDriver(options);
-            Driver.Manage().Window.Maximize();
+            options.AddArgument("--headless"); 
+            options.AddArgument("--no-sandbox");
+            options.AddArgument("--disable-dev-shm-usage");
+            options.AddArgument("--disable-gpu");
+            options.AddArgument("--window-size=1920x1080");
+
+            var driver = new ChromeDriver(options);
+
+            var options = new ChromeOptions();
+            options.AddArgument("--headless"); 
+            options.AddArgument("--no-sandbox");
+            options.AddArgument("--disable-dev-shm-usage");
         }
 
         [SetUp]
