@@ -9,14 +9,14 @@ stages:
 test_selenium:
   stage: test
   script:
-    - cd e2e
+    - cd AutomationTests
     - dotnet restore
-    - dotnet test TestProject.sln --filter "FullyQualifiedName~TestProject.e2e" --logger "trx;LogFileName=test-results.trx" --results-directory TestProject/e2e/
-    - ls -R TestProject/e2e/
+    - dotnet test TestProject.sln --filter "FullyQualifiedName~TestProject.AutomationTests" --logger "trx;LogFileName=test-results.trx" --results-directory TestProject/AutomationTests/
+    - ls -R TestProject/AutomationTests/
   artifacts:
     when: always
     paths:
-      - TestProject/e2e/test-results/
+      - TestProject/AutomationTests/e2e/test-results/
   cache:
     paths:
-      - TestProject/e2e/
+      - TestProject/AutomationTests/
