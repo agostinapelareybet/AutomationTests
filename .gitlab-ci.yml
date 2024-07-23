@@ -2,7 +2,6 @@ image: mcr.microsoft.com/dotnet/sdk:8.0
 
 variables:
   DOTNET_ENVIRONMENT: "Test"
-  DISPLAY: ":99" 
 
 stages:
   - test
@@ -11,26 +10,16 @@ test_selenium:
   stage: test
   script:
     - echo "Starting the test job..."
-    - apt-get update
-    - apt-get install -y wget unzip
-    # Install Chrome
-    - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    - apt-get install -y ./google-chrome-stable_current_amd64.deb
-    # Install Chromedriver
-    - CHROME_VERSION=$(google-chrome --version | grep -oP '[\d\.]+')
-    - wget https://chromedriver.storage.googleapis.com/$(echo $CHROME_VERSION | cut -d '.' -f1-2)/chromedriver_linux64.zip
-    - unzip chromedriver_linux64.zip -d /usr/local/bin/
-    - chmod +x /usr/local/bin/chromedriver
     - dotnet restore
-    - dotnet test TestProject.sln --filter "FullyQualifiedName~TestProject.AutomationTests" --logger "trx;LogFileName=test-results.trx" --results-directory e2e/test-results
+    - dotnet test TestProject.sln --filter "FullyQualifiedName~TestProject.e2e" --logger "trx;LogFileName=test-results.trx" --results-directory e2e/test-results
     - echo "Listing test-results directory:"
     - ls -R e2e/test-results
   artifacts:
     when: always
     reports:
-      junit: e2e/test-results/test-results.xml
+      junit: e2e/test-results/test-results.trx 
     paths:
       - e2e/test-results/test-results.trx
   cache:
     paths:
-      - e2e/ 
+      - e2e/ # Cache the e2e directory to speed up future jobs
