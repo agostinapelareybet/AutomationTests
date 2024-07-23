@@ -10,6 +10,8 @@ namespace TestProject.support.page_objects.inventory
         public IWebElement ProductDetails => _driver.FindElement(By.CssSelector(".inventory_details_name"));
         public IWebElement AppHeader => _driver.FindElement(By.CssSelector("[id=header_container]"));
         public IWebElement AddCartButton => _driver.FindElement(By.CssSelector(".btn_primary"));
+
+        public IWebElement InventoryPrice => _driver.FindElement(By.CssSelector(".inventory_item_price"));
         private readonly IWebDriver _driver = webDriver;
 
         public InventoryPage AddProductToCart()

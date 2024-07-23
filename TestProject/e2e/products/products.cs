@@ -5,8 +5,11 @@ namespace TestProject.e2e.products
     using NUnit.Framework;
     using OpenQA.Selenium;
     using support.page_objects.testBasePage;
+    using OpenQA.Selenium.Support.UI;
+
     public class ProductsTests : TestBasePage
     {
+    
         [Test]
         public void AddProductToCart()
         {
@@ -21,8 +24,20 @@ namespace TestProject.e2e.products
         {
             ProductsPage?.NavigateProducts(EnvironmentVariables.ProductsUrl);
             ProductsPage?.SortDropdown.Click();
-            IWebElement highToLowOption = Driver.FindElement(By.XPath("//option[@value='hilo']"));
-            highToLowOption.Click();
-        }
-    }
+            ProductsPage?.HighToLowOption.Click();
+        
+   
+          IList<IWebElement>? productPricesElements = ProductsPage?.GetProductPrices();
+          List<decimal> prices = productPricesElements.Select(p => decimal.Parse(p.Text.Replace("$", "").Replace(",", ""))).ToList();
+
+    List<decimal> sortedPrices = new List<decimal>(prices);
+    sortedPrices.Sort((a, b) => b.CompareTo(a)); 
+
+
+    Assert.That(prices, Is.EqualTo(sortedPrices));
 }
+  
+        }
+    
+    
+    }

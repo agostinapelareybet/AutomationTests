@@ -4,6 +4,7 @@ namespace TestProject.e2e.inventory
     using support;
     using OpenQA.Selenium;
     using support.page_objects.testBasePage;
+    using OpenQA.Selenium.Support.UI;
 
     public class InventoryTests : TestBasePage
     {
@@ -29,6 +30,8 @@ namespace TestProject.e2e.inventory
         {
             Driver.Navigate().GoToUrl(EnvironmentVariables.ProductsUrl);
             Assert.That(ProductsPage?.ProductsTitle.Text, Is.EqualTo(PageTitles.Products));
+            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
+            var inventoryFirstProductName = wait.Until(driver => driver.FindElement(By.XPath("//div[@class='inventory_item_name' and normalize-space(text())='Sauce Labs Backpack']")));
 
             InventoryPage?.FirstProductName.Click();
             Assert.That(InventoryPage?.AppHeader.Displayed, Is.True);
