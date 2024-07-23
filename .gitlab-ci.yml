@@ -14,12 +14,15 @@ test_selenium:
     - dotnet test TestProject.sln --filter "FullyQualifiedName~TestProject.AutomationTests" --logger "trx;LogFileName=test-results.trx" --results-directory e2e/test-results
     - echo "Listing test-results directory:"
     - ls -R e2e/test-results
+    - echo "Converting TRX to JUnit XML..."
+    - dotnet tool install -g trx2junit
+    - trx2junit e2e/test-results/test-results.trx --output e2e/test-results/test-results.xml
   artifacts:
     when: always
     reports:
-      junit: e2e/test-results/test-results.trx 
+      junit: e2e/test-results/test-results.xml 
     paths:
-      - e2e/test-results/test-results.trx
+      - e2e/test-results/test-results.xml
   cache:
     paths:
       - e2e/ # Cache the e2e directory to speed up future jobs
