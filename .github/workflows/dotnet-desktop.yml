@@ -12,38 +12,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
+    - name: Checkout code
       uses: actions/checkout@v4
 
     - name: Set up .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x
+        dotnet-version: '8.0.x'
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y wget unzip
 
     - name: Install Chrome
       run: |
-        sudo apt-get update
-        sudo apt-get install -y google-chrome-stable
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        sudo apt-get install -y ./google-chrome-stable_current_amd64.deb
 
     - name: Download ChromeDriver
       run: |
-        CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
-        MAJOR_VERSION=$(echo $CHROME_VERSION | cut -d '.' -f1)
-        wget https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json -O lkg.json
-        CHROMEDRIVER_URL=$(jq -r --arg version "$MAJOR_VERSION" '.channels.Stable.downloads.chromedriver[] | select(.platform == "linux64").url' lkg.json)
-        wget $CHROMEDRIVER_URL -O chromedriver-linux64.zip
+        wget https://storage.googleapis.com/chrome-for-testing-public/126.0.6478.182/linux64/chromedriver-linux64.zip
         unzip chromedriver-linux64.zip
-        mv chromedriver-linux64/chromedriver /usr/local/bin/
-        chmod +x /usr/local/bin/chromedriver
-
-    - name: Restore dependencies
-      run: dotnet restore
+        sudo mv chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
+        sudo chmod +x /usr/local/bin/chromedriver
 
     - name: Run tests
-      run: dotnet test --logger "trx;LogFileName=test-results.trx" --results-directory test-results
+      run: |
+        dotnet restore
+        dotnet test TestProject.sln --filter "FullyQualifiedName~TestProject.e2e" --logger "trx;LogFileName=test-results.trx" --results-directory e2e/test-results
 
     - name: Upload test results
       uses: actions/upload-artifact@v3
       with:
-        name: Test Results
-        path: test-results
+        name: test-results
+        path: e2e/test-results/test-results.trx
