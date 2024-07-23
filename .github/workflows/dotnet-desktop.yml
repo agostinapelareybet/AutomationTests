@@ -1,0 +1,48 @@
+name: .NET Core Selenium Tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Set up .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Install Chrome
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y google-chrome-stable
+
+    - name: Download ChromeDriver
+      run: |
+        CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
+        MAJOR_VERSION=$(echo $CHROME_VERSION | cut -d '.' -f1)
+        wget https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json -O lkg.json
+        CHROMEDRIVER_URL=$(jq -r --arg version "$MAJOR_VERSION" '.channels.Stable.downloads.chromedriver[] | select(.platform == "linux64").url' lkg.json)
+        wget $CHROMEDRIVER_URL -O chromedriver-linux64.zip
+        unzip chromedriver-linux64.zip -d /usr/local/bin/
+        chmod +x /usr/local/bin/chromedriver
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Run tests
+      run: dotnet test --logger "trx;LogFileName=test-results.trx" --results-directory test-results
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v3
+      with:
+        name: Test Results
+        path: test-results
