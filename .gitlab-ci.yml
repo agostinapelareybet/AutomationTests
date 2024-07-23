@@ -9,14 +9,13 @@ stages:
 test_selenium:
   stage: test
   script:
-    - cd AutomationTests
     - dotnet restore
-    - dotnet test TestProject.sln --filter "FullyQualifiedName~TestProject.AutomationTests" --logger "trx;LogFileName=test-results.trx" --results-directory TestProject/AutomationTests/
-    - ls -R TestProject/AutomationTests/
+    - dotnet test TestProject.sln --filter "FullyQualifiedName~TestProject.AutomationTests" --logger "trx;LogFileName=test-results.trx" --results-directory e2e/test-results
+    - ls -R e2e/test-results
   artifacts:
     when: always
     paths:
-      - TestProject/AutomationTests/e2e/test-results/
+      - e2e/test-results/test-results.trx
   cache:
     paths:
-      - TestProject/AutomationTests/
+      - e2e/ # Cache the e2e directory to speed up future jobs
