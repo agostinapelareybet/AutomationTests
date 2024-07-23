@@ -41,11 +41,6 @@ namespace TestProject.support.page_objects.testBasePage
             options.AddArgument("--window-size=1920x1080");
 
             var driver = new ChromeDriver(options);
-
-            var options = new ChromeOptions();
-            options.AddArgument("--headless"); 
-            options.AddArgument("--no-sandbox");
-            options.AddArgument("--disable-dev-shm-usage");
         }
 
         [SetUp]
