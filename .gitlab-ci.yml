@@ -1,4 +1,4 @@
-image: mcr.microsoft.com/dotnet/sdk:6.0
+image: mcr.microsoft.com/dotnet/sdk:8.0
 
 variables:
   DOTNET_ENVIRONMENT: "Test"
@@ -9,6 +9,7 @@ stages:
 test_selenium:
   stage: test
   script:
+    - echo "Starting the test job..."
     - dotnet restore
     - dotnet test TestProject.sln --filter "FullyQualifiedName~TestProject.AutomationTests" --logger "trx;LogFileName=test-results.trx" --results-directory e2e/test-results
     - ls -R e2e/test-results
