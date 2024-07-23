@@ -21,7 +21,7 @@ namespace TestProject.e2e.products
         {
             ProductsPage?.NavigateProducts(EnvironmentVariables.ProductsUrl);
             ProductsPage?.SortDropdown.Click();
-            IWebElement highToLowOption = Driver.FindElement(By.XPath("//option[@value='hilo']"));
+            var highToLowOption = Driver.FindElement(By.XPath("//option[@value='hilo']"));
             highToLowOption.Click();
         }
     }
