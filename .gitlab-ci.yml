@@ -7,10 +7,14 @@ stages:
   - test
 
 before_script:
+  # Actualizar la lista de paquetes
   - apt-get update
+  # Instalar dependencias para Google Chrome
   - apt-get install -y wget gnupg
-  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-  - apt-get install -y ./google-chrome-stable_current_amd64.deb
+  - wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
+  - echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google-chrome.list
+  - apt-get update
+  - apt-get install -y google-chrome-stable
   - apt-get install -y \
       fonts-liberation \
       libasound2 \
@@ -45,9 +49,9 @@ test_job:
     - echo "Setting up the environment..."
     - export PATH="$PATH:$HOME/.dotnet/tools"
     - dotnet restore
-    - dotnet test TestProject.sln --filter "FullyQualifiedName~TestProject.e2e" --logger "trx;LogFileName=test-results.trx" --results-directory ./TestResults
-    - ls -R ./TestResults
+    - dotnet test TestProject.sln --filter "FullyQualifiedName~TestProject.e2e" --logger "trx;LogFileName=test-results.trx" --results-directory e2e/test-results
+    - ls -R e2e/test-results
   artifacts:
     when: always
     paths:
-      - TestResults/test-results.trx
+      - e2e/test-results/test-results.trx
