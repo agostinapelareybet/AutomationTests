@@ -40,7 +40,7 @@ namespace TestProject.support.page_objects.testBasePage
             options.AddArgument("--disable-gpu");
             options.AddArgument("--window-size=1920x1080");
 
-            var driver = new ChromeDriver(options);
+            var Driver = new ChromeDriver(options);
         }
 
         [SetUp]
@@ -56,8 +56,9 @@ namespace TestProject.support.page_objects.testBasePage
         [OneTimeTearDown]
         public void OneTimeTearDownBase()
         {
-            Driver.Quit();
-            Driver.Dispose();
+            {
+                Driver.Quit();
+            }
         }
     }
 }
