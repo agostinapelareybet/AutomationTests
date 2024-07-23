@@ -6,11 +6,24 @@ variables:
 stages:
   - test
 
+before_script:
+  - echo "Setting up the environment..."
+  - apt-get update && apt-get install -y wget unzip
+  - echo "Installing Chrome..."
+  - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+  - dpkg -i google-chrome-stable_current_amd64.deb
+  - apt-get install -f
+  - echo "Installing ChromeDriver..."
+  - LATEST_CHROMEDRIVER=$(wget -q -O - https://chromedriver.storage.googleapis.com/LATEST_RELEASE)
+  - wget https://chromedriver.storage.googleapis.com/${LATEST_CHROMEDRIVER}/chromedriver_linux64.zip
+  - unzip chromedriver_linux64.zip
+  - mv chromedriver /usr/local/bin/chromedriver
+  - chmod +x /usr/local/bin/chromedriver
+  - export PATH="$PATH:/usr/local/bin"
+
 test_job:
   stage: test
   script:
-    - echo "Setting up the environment..."
-    - export PATH="$PATH:$HOME/.dotnet/tools"
     - dotnet restore
     - dotnet test TestProject.sln --filter "FullyQualifiedName~TestProject.e2e" --logger "trx;LogFileName=test-results.trx"
   artifacts:
