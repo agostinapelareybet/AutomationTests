@@ -39,7 +39,7 @@ namespace TestProject.support.page_objects.testBasePage
                 "--headless",
                 "--disable-gpu",
                 "--disable-dev-shm-usage",
-                "--remote-debugging-port=9222"
+                "--window-size=1920x1080"
             );
             Driver = new ChromeDriver(options);
             Driver.Manage().Window.Maximize();
