@@ -15,7 +15,6 @@ namespace TestProject.support.page_objects.products
         public IWebElement AddToCartButton => _driver.FindElement(By.CssSelector("button.btn_primary.btn_inventory:first-of-type"));
 
         public IWebElement HighToLowOption => _driver.FindElement(By.XPath("//option[@value='hilo']"));
-         public IWebElement InventoryPrice => _driver.FindElement(By.CssSelector(".inventory_item_price"));
 
         public ProductsPage NavigateProducts(string baseurl)
         {
@@ -25,31 +24,12 @@ namespace TestProject.support.page_objects.products
 
             return new ProductsPage(_driver);
         }
-
-
-     public IWebElement SortDropdownProducts
-    {
-        get
-        {
-            return SortDropdown; 
-        }
-    }
-
-  
-    public IWebElement HighToLowOptionProducts
-    {
-        get
-        {
-            return HighToLowOption;
-        }
-    }
-
    
     public IList<IWebElement> GetProductPrices()
     {
         
         return (IList<IWebElement>)_driver.FindElements(By.CssSelector(".inventory_item_price"));
     }
-}
 
+    }
 }
