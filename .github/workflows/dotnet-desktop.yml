@@ -27,17 +27,19 @@ jobs:
 
     - name: Install Chrome
       run: |
-        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-        sudo apt-get install -y ./google-chrome-stable_current_amd64.deb
+       wget https://storage.googleapis.com/chrome-for-testing-public/126.0.6478.182/linux64/chrome-linux64.zip
+       unzip chrome-linux64.zip
+       sudo mv chrome-linux64/chrome /usr/local/bin/google-chrome
+       sudo chmod +x /usr/local/bin/google-chrome
+       google-chrome --version
 
     - name: Download ChromeDriver
       run: |
-        wget https://storage.googleapis.com/chrome-for-testing-public/126.0.6478.182/linux64/chromedriver-linux64.zip
-        unzip chromedriver-linux64.zip
-        sudo mv chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
-        sudo chmod +x /usr/local/bin/chromedriver
-        google-chrome --version
-        chromedriver --version
+       wget https://storage.googleapis.com/chrome-for-testing-public/126.0.6478.182/linux64/chromedriver-linux64.zip
+       unzip chromedriver-linux64.zip
+       sudo mv chromedriver-linux64/chromedriver /usr/local/bin/chromedriver
+       sudo chmod +x /usr/local/bin/chromedriver
+       chromedriver --version
 
     - name: Run tests
       run: |
