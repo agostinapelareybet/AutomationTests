@@ -49,9 +49,9 @@ test_job:
     - echo "Setting up the environment..."
     - export PATH="$PATH:$HOME/.dotnet/tools"
     - dotnet restore
-    - dotnet test TestProject.sln --filter "FullyQualifiedName~TestProject.e2e" --logger "trx;LogFileName=test-results.trx" --results-directory e2e/test-results
-    - ls -R e2e/test-results
+    - dotnet test TestProject.sln --filter "FullyQualifiedName~TestProject.e2e" --logger "trx;LogFileName=test-results.trx" --results-directory TestProject/e2e/test-results
+    - ls -R TestProject/e2e/test-results
   artifacts:
     when: always
     paths:
-      - e2e/test-results/
+      - TestProject/e2e/test-results/
