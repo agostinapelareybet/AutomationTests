@@ -15,8 +15,9 @@ test_selenium:
   - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   - apt-get install -y ./google-chrome-stable_current_amd64.deb
   - CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
+  - MAJOR_VERSION=$(echo $CHROME_VERSION | cut -d '.' -f1)
   - wget https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json -O lkg.json
-  - CHROMEDRIVER_URL=$(jq -r --arg version "$CHROME_VERSION" '.channels.LATEST_RELEASE.downloads.chromedriver | map(select(.platform == "linux64")) | .[0].url' lkg.json)
+  - CHROMEDRIVER_URL=$(jq -r --arg version "$MAJOR_VERSION" '.channels | .[] | select(.version | startswith($version)).downloads.chromedriver[] | select(.platform == "linux64").url' lkg.json)
   - wget $CHROMEDRIVER_URL -O chromedriver-linux64.zip
   - unzip chromedriver-linux64.zip -d /usr/local/bin/
   - chmod +x /usr/local/bin/chromedriver
