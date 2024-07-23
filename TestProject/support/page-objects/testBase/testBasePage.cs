@@ -42,7 +42,6 @@ namespace TestProject.support.page_objects.testBasePage
                 "--remote-debugging-port=9222"
             );
             Driver = new ChromeDriver(options);
-            Driver.Manage().Window.Maximize();
         }
 
         [SetUp]

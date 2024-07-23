@@ -11,7 +11,7 @@ test_selenium:
   script:
   - echo "Starting the test job..."
   - apt-get update
-  - apt-get install -y wget unzip jq
+  - apt-get install -y wget unzip
   - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
   - apt-get install -y ./google-chrome-stable_current_amd64.deb
   - CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
