@@ -54,4 +54,4 @@ test_job:
   artifacts:
     when: always
     paths:
-      - e2e/test-results/test-results.trx
+      - e2e/test-results/
