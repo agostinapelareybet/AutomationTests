@@ -24,6 +24,7 @@ namespace TestProject.e2e.products
         {
             ProductsPage?.NavigateProducts(EnvironmentVariables.ProductsUrl);
             ProductsPage?.SortDropdown.Click();
+
             ProductsPage?.HighToLowOption.Click();
         
    
@@ -37,6 +38,7 @@ namespace TestProject.e2e.products
     Assert.That(prices, Is.EqualTo(sortedPrices));
 }
   
+
         }
     
     

@@ -24,4 +24,8 @@
     <Using Include="NUnit.Framework" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="e2e\test-results\" />
+  </ItemGroup>
+
 </Project>
