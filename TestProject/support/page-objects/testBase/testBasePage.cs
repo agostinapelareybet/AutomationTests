@@ -33,8 +33,15 @@ namespace TestProject.support.page_objects.testBasePage
                 var envFilePath = Path.Combine(projectDir, ".env");
                 Env.Load(envFilePath);
             }
-            new DriverManager().SetUpDriver(new ChromeConfig());
-            Driver = new ChromeDriver();
+            var options = new ChromeOptions();
+            options.AddArguments(
+                "--no-sandbox",
+                "--headless",
+                "--disable-gpu",
+                "--disable-dev-shm-usage",
+                "--remote-debugging-port=9222"
+            );
+            Driver = new ChromeDriver(options);
             Driver.Manage().Window.Maximize();
         }
 
