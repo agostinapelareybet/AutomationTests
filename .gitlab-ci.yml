@@ -2,7 +2,6 @@ image: mcr.microsoft.com/dotnet/sdk:8.0
 
 variables:
   DOTNET_ENVIRONMENT: "Test"
-  PATH: "/root/.dotnet/tools:$PATH"  # Añade el directorio de herramientas al PATH
 
 stages:
   - test
@@ -15,16 +14,12 @@ test_selenium:
     - dotnet test TestProject.sln --filter "FullyQualifiedName~TestProject.AutomationTests" --logger "trx;LogFileName=test-results.trx" --results-directory e2e/test-results
     - echo "Listing test-results directory:"
     - ls -R e2e/test-results
-    - echo "Installing trx2junit tool..."
-    - dotnet tool install -g trx2junit
-    - echo "Converting TRX to JUnit XML..."
-    - trx2junit e2e/test-results/test-results.trx --output e2e/test-results/test-results.xml
   artifacts:
     when: always
     reports:
-      junit: e2e/test-results/test-results.xml 
+      junit: e2e/test-results/test-results.trx 
     paths:
-      - e2e/test-results/test-results.xml
+      - e2e/test-results/test-results.trx
   cache:
     paths:
       - e2e/ # Cache the e2e directory to speed up future jobs
