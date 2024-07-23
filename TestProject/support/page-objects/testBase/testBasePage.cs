@@ -1,5 +1,4 @@
-﻿
-namespace TestProject.support.page_objects.testBasePage
+﻿namespace TestProject.support.page_objects.testBasePage
 {
     using cart;
     using login;
@@ -33,14 +32,9 @@ namespace TestProject.support.page_objects.testBasePage
                 var envFilePath = Path.Combine(projectDir, ".env");
                 Env.Load(envFilePath);
             }
-            var options = new ChromeOptions();
-            options.AddArgument("--headless"); 
-            options.AddArgument("--no-sandbox");
-            options.AddArgument("--disable-dev-shm-usage");
-            options.AddArgument("--disable-gpu");
-            options.AddArgument("--window-size=1920x1080");
-
-            var Driver = new ChromeDriver(options);
+            new DriverManager().SetUpDriver(new ChromeConfig());
+            Driver = new ChromeDriver();
+            Driver.Manage().Window.Maximize();
         }
 
         [SetUp]
@@ -56,9 +50,8 @@ namespace TestProject.support.page_objects.testBasePage
         [OneTimeTearDown]
         public void OneTimeTearDownBase()
         {
-            {
-                Driver.Quit();
-            }
+            Driver.Quit();
+            Driver.Dispose();
         }
     }
 }
