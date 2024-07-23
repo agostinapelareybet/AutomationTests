@@ -7,9 +7,9 @@ stages:
   - test
 
 before_script:
-  # Actualizar la lista de paquetes
+  # Update packages
   - apt-get update
-  # Instalar dependencias para Google Chrome
+  # Install dependencies for Google Chrome
   - apt-get install -y wget gnupg
   - wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
   - echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" | tee /etc/apt/sources.list.d/google-chrome.list
@@ -50,7 +50,6 @@ test_job:
     - export PATH="$PATH:$HOME/.dotnet/tools"
     - dotnet restore
     - dotnet test TestProject.sln --filter "FullyQualifiedName~TestProject.e2e" --logger "trx;LogFileName=test-results.trx" --results-directory e2e/test-results
-    - ls -R e2e/test-results
   artifacts:
     when: always
     paths:
