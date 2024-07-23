@@ -1,114 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TestRun id="c44e6c01-8430-46e9-99ee-e8c5dba3b73a" name="dmansilla@EN2110323 2024-07-23 11:55:25" runUser="ENDAVA\dmansilla" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
-  <Times creation="2024-07-23T11:55:25.7051667-03:00" queuing="2024-07-23T11:55:25.7051669-03:00" start="2024-07-23T11:55:17.2882900-03:00" finish="2024-07-23T11:56:18.1874229-03:00" />
-  <TestSettings name="default" id="8c477d1b-4b76-4457-8794-cf8e590b481c">
-    <Deployment runDeploymentRoot="dmansilla_EN2110323_2024-07-23_11_55_25" />
+<TestRun id="9da8fba3-ab49-4d9d-93cb-8df48227a359" name="dmansilla@EN2110323 2024-07-23 13:25:56" runUser="ENDAVA\dmansilla" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010">
+  <Times creation="2024-07-23T13:25:56.8092263-03:00" queuing="2024-07-23T13:25:56.8092266-03:00" start="2024-07-23T13:25:55.8644008-03:00" finish="2024-07-23T13:25:56.8096083-03:00" />
+  <TestSettings name="default" id="7483721e-3b2b-4cb0-84f0-8aea0fec7b1c">
+    <Deployment runDeploymentRoot="dmansilla_EN2110323_2024-07-23_13_25_56" />
   </TestSettings>
-  <Results>
-    <UnitTestResult executionId="595bedb4-35ea-4ee3-a0d0-a478c8c8b00d" testId="34c8bd97-dd05-1b87-ee4c-82b2b7d50134" testName="BackButtonRedirection" computerName="EN2110323" duration="00:00:00.4198370" startTime="2024-07-23T11:56:08.5272304-03:00" endTime="2024-07-23T11:56:08.9470703-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="595bedb4-35ea-4ee3-a0d0-a478c8c8b00d" />
-    <UnitTestResult executionId="a4f2d3e9-f52c-4135-8269-8b2b0b4f3808" testId="9f04b3ad-a8f4-ee86-3c06-770c610768ac" testName="LoginWithInvalidUsername" computerName="EN2110323" duration="00:00:00.6493150" startTime="2024-07-23T11:56:10.9962160-03:00" endTime="2024-07-23T11:56:11.6455371-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="a4f2d3e9-f52c-4135-8269-8b2b0b4f3808" />
-    <UnitTestResult executionId="61819030-1214-4967-a6a0-224a8c7f2c6b" testId="7e7839e1-42fc-6846-5470-b5832524e461" testName="LoginWithoutUsername" computerName="EN2110323" duration="00:00:00.2517270" startTime="2024-07-23T11:56:12.1997741-03:00" endTime="2024-07-23T11:56:12.4515025-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="61819030-1214-4967-a6a0-224a8c7f2c6b" />
-    <UnitTestResult executionId="5364420d-d5d6-410c-abb2-50aca18f3006" testId="a5134fe6-3f20-13b2-c3cd-9ee85bdaebc8" testName="LoginWithoutCredentials" computerName="EN2110323" duration="00:00:00.2699250" startTime="2024-07-23T11:56:11.6456060-03:00" endTime="2024-07-23T11:56:11.9155326-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="5364420d-d5d6-410c-abb2-50aca18f3006" />
-    <UnitTestResult executionId="d69254f4-167d-4410-939c-4467dd70862c" testId="b1567c94-eafb-05a6-10fa-3ad4fc41eb21" testName="ContinuAddingProductsToCart" computerName="EN2110323" duration="00:00:12.0444669" startTime="2024-07-23T11:55:25.6605900-03:00" endTime="2024-07-23T11:55:37.7051581-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="d69254f4-167d-4410-939c-4467dd70862c" />
-    <UnitTestResult executionId="157da548-7882-4c4c-81dc-c2cb70c2792b" testId="7f2b4ca5-4214-1a60-4e10-4f19c7e050de" testName="AddProductToCart" computerName="EN2110323" duration="00:00:02.4362130" startTime="2024-07-23T11:56:06.0909482-03:00" endTime="2024-07-23T11:56:08.5271827-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="157da548-7882-4c4c-81dc-c2cb70c2792b" />
-    <UnitTestResult executionId="f978ac9e-7f92-475f-b117-f53ed1ef8a97" testId="a3320c03-7c86-df84-ca9b-1d6dc3885fc2" testName="AddProductToCart" computerName="EN2110323" duration="00:00:01.4770120" startTime="2024-07-23T11:56:16.2448339-03:00" endTime="2024-07-23T11:56:17.7218619-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="f978ac9e-7f92-475f-b117-f53ed1ef8a97" />
-    <UnitTestResult executionId="331f07f9-985d-404e-9649-24c8f197c768" testId="d6b7455e-c39e-8288-3098-52a7a2a69f7d" testName="AddProductToCart" computerName="EN2110323" duration="00:00:03.8364720" startTime="2024-07-23T11:55:21.8230308-03:00" endTime="2024-07-23T11:55:25.6594808-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="331f07f9-985d-404e-9649-24c8f197c768" />
-    <UnitTestResult executionId="10962e47-4f92-4290-a9f1-bced625913c5" testId="b49c9bf8-6eff-d9e0-db24-66cada5d6299" testName="ProductDetails" computerName="EN2110323" duration="00:00:00.2056160" startTime="2024-07-23T11:56:08.9471227-03:00" endTime="2024-07-23T11:56:09.1527392-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="10962e47-4f92-4290-a9f1-bced625913c5" />
-    <UnitTestResult executionId="16f9d90e-bad8-4913-b5de-872bb75b4a85" testId="9fc87bb9-a1d7-c84a-09f9-887299b325f3" testName="SortProductsHighToLow" computerName="EN2110323" duration="00:00:00.2602950" startTime="2024-07-23T11:56:17.7219120-03:00" endTime="2024-07-23T11:56:17.9822093-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="16f9d90e-bad8-4913-b5de-872bb75b4a85" />
-    <UnitTestResult executionId="e217a769-b1dc-42b3-b458-be32dbec2a76" testId="b584c6c4-a450-2e6d-5a41-fc5a75fef24d" testName="LoginWithValidCredentials" computerName="EN2110323" duration="00:00:01.9487160" startTime="2024-07-23T11:56:12.4515486-03:00" endTime="2024-07-23T11:56:14.4002801-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="e217a769-b1dc-42b3-b458-be32dbec2a76" />
-    <UnitTestResult executionId="c2743649-9134-4662-99d0-276ee8e9d896" testId="6497b4b2-0b3d-6fc6-c677-371a7c9baa87" testName="LoginWithoutPassword" computerName="EN2110323" duration="00:00:00.2841590" startTime="2024-07-23T11:56:11.9155622-03:00" endTime="2024-07-23T11:56:12.1997210-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="c2743649-9134-4662-99d0-276ee8e9d896" />
-    <UnitTestResult executionId="b1c929c4-0149-49ed-ac27-7f4fd483596d" testId="3683f16b-3d98-401e-7d24-c528d67ce8e3" testName="RemoveProductToCart" computerName="EN2110323" duration="00:00:26.0146820" startTime="2024-07-23T11:55:37.7052505-03:00" endTime="2024-07-23T11:56:03.7201533-03:00" testType="13cdc9d9-ddb5-4fa4-a97d-d965ccfc6d4b" outcome="Passed" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" relativeResultsDirectory="b1c929c4-0149-49ed-ac27-7f4fd483596d">
-      <Output>
-        <StdOut>Error: Timed out after 20 seconds</StdOut>
-      </Output>
-    </UnitTestResult>
-  </Results>
-  <TestDefinitions>
-    <UnitTest name="LoginWithoutUsername" storage="c:\diorella mansilla\selenium\automationtests\testproject\bin\debug\net8.0\testproject.dll" id="7e7839e1-42fc-6846-5470-b5832524e461">
-      <Execution id="61819030-1214-4967-a6a0-224a8c7f2c6b" />
-      <TestMethod codeBase="C:\Diorella Mansilla\Selenium\AutomationTests\TestProject\bin\Debug\net8.0\TestProject.dll" adapterTypeName="executor://nunit3testexecutor/" className="TestProject.e2e.login.LogInTests" name="LoginWithoutUsername" />
-    </UnitTest>
-    <UnitTest name="AddProductToCart" storage="c:\diorella mansilla\selenium\automationtests\testproject\bin\debug\net8.0\testproject.dll" id="a3320c03-7c86-df84-ca9b-1d6dc3885fc2">
-      <Execution id="f978ac9e-7f92-475f-b117-f53ed1ef8a97" />
-      <TestMethod codeBase="C:\Diorella Mansilla\Selenium\AutomationTests\TestProject\bin\Debug\net8.0\TestProject.dll" adapterTypeName="executor://nunit3testexecutor/" className="TestProject.e2e.products.ProductsTests" name="AddProductToCart" />
-    </UnitTest>
-    <UnitTest name="AddProductToCart" storage="c:\diorella mansilla\selenium\automationtests\testproject\bin\debug\net8.0\testproject.dll" id="7f2b4ca5-4214-1a60-4e10-4f19c7e050de">
-      <Execution id="157da548-7882-4c4c-81dc-c2cb70c2792b" />
-      <TestMethod codeBase="C:\Diorella Mansilla\Selenium\AutomationTests\TestProject\bin\Debug\net8.0\TestProject.dll" adapterTypeName="executor://nunit3testexecutor/" className="TestProject.e2e.inventory.InventoryTests" name="AddProductToCart" />
-    </UnitTest>
-    <UnitTest name="LoginWithValidCredentials" storage="c:\diorella mansilla\selenium\automationtests\testproject\bin\debug\net8.0\testproject.dll" id="b584c6c4-a450-2e6d-5a41-fc5a75fef24d">
-      <Execution id="e217a769-b1dc-42b3-b458-be32dbec2a76" />
-      <TestMethod codeBase="C:\Diorella Mansilla\Selenium\AutomationTests\TestProject\bin\Debug\net8.0\TestProject.dll" adapterTypeName="executor://nunit3testexecutor/" className="TestProject.e2e.login.LogInTests" name="LoginWithValidCredentials" />
-    </UnitTest>
-    <UnitTest name="RemoveProductToCart" storage="c:\diorella mansilla\selenium\automationtests\testproject\bin\debug\net8.0\testproject.dll" id="3683f16b-3d98-401e-7d24-c528d67ce8e3">
-      <Execution id="b1c929c4-0149-49ed-ac27-7f4fd483596d" />
-      <TestMethod codeBase="C:\Diorella Mansilla\Selenium\AutomationTests\TestProject\bin\Debug\net8.0\TestProject.dll" adapterTypeName="executor://nunit3testexecutor/" className="TestProject.e2e.cart.CartTests" name="RemoveProductToCart" />
-    </UnitTest>
-    <UnitTest name="LoginWithoutCredentials" storage="c:\diorella mansilla\selenium\automationtests\testproject\bin\debug\net8.0\testproject.dll" id="a5134fe6-3f20-13b2-c3cd-9ee85bdaebc8">
-      <Execution id="5364420d-d5d6-410c-abb2-50aca18f3006" />
-      <TestMethod codeBase="C:\Diorella Mansilla\Selenium\AutomationTests\TestProject\bin\Debug\net8.0\TestProject.dll" adapterTypeName="executor://nunit3testexecutor/" className="TestProject.e2e.login.LogInTests" name="LoginWithoutCredentials" />
-    </UnitTest>
-    <UnitTest name="SortProductsHighToLow" storage="c:\diorella mansilla\selenium\automationtests\testproject\bin\debug\net8.0\testproject.dll" id="9fc87bb9-a1d7-c84a-09f9-887299b325f3">
-      <Execution id="16f9d90e-bad8-4913-b5de-872bb75b4a85" />
-      <TestMethod codeBase="C:\Diorella Mansilla\Selenium\AutomationTests\TestProject\bin\Debug\net8.0\TestProject.dll" adapterTypeName="executor://nunit3testexecutor/" className="TestProject.e2e.products.ProductsTests" name="SortProductsHighToLow" />
-    </UnitTest>
-    <UnitTest name="ContinuAddingProductsToCart" storage="c:\diorella mansilla\selenium\automationtests\testproject\bin\debug\net8.0\testproject.dll" id="b1567c94-eafb-05a6-10fa-3ad4fc41eb21">
-      <Execution id="d69254f4-167d-4410-939c-4467dd70862c" />
-      <TestMethod codeBase="C:\Diorella Mansilla\Selenium\AutomationTests\TestProject\bin\Debug\net8.0\TestProject.dll" adapterTypeName="executor://nunit3testexecutor/" className="TestProject.e2e.cart.CartTests" name="ContinuAddingProductsToCart" />
-    </UnitTest>
-    <UnitTest name="AddProductToCart" storage="c:\diorella mansilla\selenium\automationtests\testproject\bin\debug\net8.0\testproject.dll" id="d6b7455e-c39e-8288-3098-52a7a2a69f7d">
-      <Execution id="331f07f9-985d-404e-9649-24c8f197c768" />
-      <TestMethod codeBase="C:\Diorella Mansilla\Selenium\AutomationTests\TestProject\bin\Debug\net8.0\TestProject.dll" adapterTypeName="executor://nunit3testexecutor/" className="TestProject.e2e.cart.CartTests" name="AddProductToCart" />
-    </UnitTest>
-    <UnitTest name="BackButtonRedirection" storage="c:\diorella mansilla\selenium\automationtests\testproject\bin\debug\net8.0\testproject.dll" id="34c8bd97-dd05-1b87-ee4c-82b2b7d50134">
-      <Execution id="595bedb4-35ea-4ee3-a0d0-a478c8c8b00d" />
-      <TestMethod codeBase="C:\Diorella Mansilla\Selenium\AutomationTests\TestProject\bin\Debug\net8.0\TestProject.dll" adapterTypeName="executor://nunit3testexecutor/" className="TestProject.e2e.inventory.InventoryTests" name="BackButtonRedirection" />
-    </UnitTest>
-    <UnitTest name="LoginWithInvalidUsername" storage="c:\diorella mansilla\selenium\automationtests\testproject\bin\debug\net8.0\testproject.dll" id="9f04b3ad-a8f4-ee86-3c06-770c610768ac">
-      <Execution id="a4f2d3e9-f52c-4135-8269-8b2b0b4f3808" />
-      <TestMethod codeBase="C:\Diorella Mansilla\Selenium\AutomationTests\TestProject\bin\Debug\net8.0\TestProject.dll" adapterTypeName="executor://nunit3testexecutor/" className="TestProject.e2e.login.LogInTests" name="LoginWithInvalidUsername" />
-    </UnitTest>
-    <UnitTest name="ProductDetails" storage="c:\diorella mansilla\selenium\automationtests\testproject\bin\debug\net8.0\testproject.dll" id="b49c9bf8-6eff-d9e0-db24-66cada5d6299">
-      <Execution id="10962e47-4f92-4290-a9f1-bced625913c5" />
-      <TestMethod codeBase="C:\Diorella Mansilla\Selenium\AutomationTests\TestProject\bin\Debug\net8.0\TestProject.dll" adapterTypeName="executor://nunit3testexecutor/" className="TestProject.e2e.inventory.InventoryTests" name="ProductDetails" />
-    </UnitTest>
-    <UnitTest name="LoginWithoutPassword" storage="c:\diorella mansilla\selenium\automationtests\testproject\bin\debug\net8.0\testproject.dll" id="6497b4b2-0b3d-6fc6-c677-371a7c9baa87">
-      <Execution id="c2743649-9134-4662-99d0-276ee8e9d896" />
-      <TestMethod codeBase="C:\Diorella Mansilla\Selenium\AutomationTests\TestProject\bin\Debug\net8.0\TestProject.dll" adapterTypeName="executor://nunit3testexecutor/" className="TestProject.e2e.login.LogInTests" name="LoginWithoutPassword" />
-    </UnitTest>
-  </TestDefinitions>
-  <TestEntries>
-    <TestEntry testId="34c8bd97-dd05-1b87-ee4c-82b2b7d50134" executionId="595bedb4-35ea-4ee3-a0d0-a478c8c8b00d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="9f04b3ad-a8f4-ee86-3c06-770c610768ac" executionId="a4f2d3e9-f52c-4135-8269-8b2b0b4f3808" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="7e7839e1-42fc-6846-5470-b5832524e461" executionId="61819030-1214-4967-a6a0-224a8c7f2c6b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="a5134fe6-3f20-13b2-c3cd-9ee85bdaebc8" executionId="5364420d-d5d6-410c-abb2-50aca18f3006" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="b1567c94-eafb-05a6-10fa-3ad4fc41eb21" executionId="d69254f4-167d-4410-939c-4467dd70862c" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="7f2b4ca5-4214-1a60-4e10-4f19c7e050de" executionId="157da548-7882-4c4c-81dc-c2cb70c2792b" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="a3320c03-7c86-df84-ca9b-1d6dc3885fc2" executionId="f978ac9e-7f92-475f-b117-f53ed1ef8a97" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="d6b7455e-c39e-8288-3098-52a7a2a69f7d" executionId="331f07f9-985d-404e-9649-24c8f197c768" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="b49c9bf8-6eff-d9e0-db24-66cada5d6299" executionId="10962e47-4f92-4290-a9f1-bced625913c5" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="9fc87bb9-a1d7-c84a-09f9-887299b325f3" executionId="16f9d90e-bad8-4913-b5de-872bb75b4a85" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="b584c6c4-a450-2e6d-5a41-fc5a75fef24d" executionId="e217a769-b1dc-42b3-b458-be32dbec2a76" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="6497b4b2-0b3d-6fc6-c677-371a7c9baa87" executionId="c2743649-9134-4662-99d0-276ee8e9d896" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-    <TestEntry testId="3683f16b-3d98-401e-7d24-c528d67ce8e3" executionId="b1c929c4-0149-49ed-ac27-7f4fd483596d" testListId="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
-  </TestEntries>
   <TestLists>
     <TestList name="Results Not in a List" id="8c84fa94-04c1-424b-9868-57a2d4851a1d" />
     <TestList name="All Loaded Results" id="19431567-8539-422a-85d7-44ee4e166bda" />
   </TestLists>
   <ResultSummary outcome="Completed">
-    <Counters total="13" executed="13" passed="13" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
+    <Counters total="0" executed="0" passed="0" failed="0" error="0" timeout="0" aborted="0" inconclusive="0" passedButRunAborted="0" notRunnable="0" notExecuted="0" disconnected="0" warning="0" completed="0" inProgress="0" pending="0" />
     <Output>
       <StdOut>NUnit Adapter 4.5.0.0: Test execution started&#xD;
 Running selected tests in C:\Diorella Mansilla\Selenium\AutomationTests\TestProject\bin\Debug\net8.0\TestProject.dll&#xD;
-   NUnit3TestExecutor discovered 13 of 13 NUnit test cases using Current Discovery mode, Non-Explicit run&#xD;
+   NUnit3TestExecutor discovered 0 of 0 NUnit test cases using Current Discovery mode, Explicit run&#xD;
 NUnit Adapter 4.5.0.0: Test execution complete&#xD;
 </StdOut>
     </Output>
     <RunInfos>
-      <RunInfo computerName="EN2110323" outcome="Warning" timestamp="2024-07-23T11:56:03.7216111-03:00">
-        <Text>Error: Timed out after 20 seconds&#xD;
-</Text>
+      <RunInfo computerName="EN2110323" outcome="Warning" timestamp="2024-07-23T13:25:56.7605766-03:00">
+        <Text>No test matches the given testcase filter `FullyQualifiedName~TestProject.AutomationTests` in C:\Diorella Mansilla\Selenium\AutomationTests\TestProject\bin\Debug\net8.0\TestProject.dll</Text>
       </RunInfo>
     </RunInfos>
   </ResultSummary>

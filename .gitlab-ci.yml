@@ -11,7 +11,7 @@ test_selenium:
   script:
     - echo "Starting the test job..."
     - dotnet restore
-    - dotnet test TestProject.sln --filter "FullyQualifiedName~TestProject.AutomationTests" --logger "trx;LogFileName=test-results.trx" --results-directory e2e/test-results
+    - dotnet test TestProject.sln --filter "FullyQualifiedName~TestProject.e2e" --logger "trx;LogFileName=test-results.trx" --results-directory e2e/test-results
     - echo "Listing test-results directory:"
     - ls -R e2e/test-results
   artifacts:
