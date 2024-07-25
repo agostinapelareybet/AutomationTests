@@ -1,10 +1,5 @@
 pipeline {
     agent { label 'Built-In Node' }
-
-    tools {
-        dotnet 'dotnet-sdk-7.0'
-    }
-
     stages {
         stage('Checkout') {
             steps {
