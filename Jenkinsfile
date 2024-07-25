@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'Built-In Node' }
 
     tools {
         dotnet 'dotnet-sdk-7.0'
