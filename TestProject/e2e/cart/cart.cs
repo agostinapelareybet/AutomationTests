@@ -6,6 +6,8 @@ namespace TestProject.e2e.cart
     using support.page_objects.testBasePage;
     using OpenQA.Selenium.Support.UI;
     using OpenQA.Selenium;
+    using System;
+    using System.Security.Cryptography;
 
     public class CartTests : TestBasePage
     {
@@ -21,9 +23,25 @@ namespace TestProject.e2e.cart
             Assert.That(CartPage.FirstProductName.Text, Is.EqualTo(CartPage.ProductName));
             Assert.That(CartPage.CartRemoveButton.Text, Is.EqualTo("REMOVE"));
         }
+    
+     [Test,Category("Only")]
+        public void RemoveProductToCart()
+        {
+            ProductsPage = LoginPage?.Login(RandomUserName, EnvironmentVariables.Password);
 
-        [Test]
-        public void ContinuAddingProductsToCart()
+            ProductsPage?.AddToCartButton.Click();
+            ProductsPage?.CartBadgeIcon.Click();
+            Assert.That(CartPage?.YourCartTitle.Text, Is.EqualTo(PageTitles.YourCart));
+            Assert.That(CartPage?.CartRemoveButton.Displayed, Is.True);
+            CartPage.CartRemoveButton.Click();
+            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(10));
+            wait.Until(drv => drv.FindElements(By.XPath("//button[@class='btn_secondary cart_button']")).Count==0);
+            IList<IWebElement> lt = Driver.FindElements(By.XPath("//button[@class='btn_secondary cart_button']"));
+            Assert.That(lt.Count, Is.EqualTo(0));
+     
+     }
+             [Test]
+        public void ContinueAddingProductsToCart()
         {
             ProductsPage = LoginPage?.Login(RandomUserName, EnvironmentVariables.Password);
 
@@ -37,43 +55,9 @@ namespace TestProject.e2e.cart
             Assert.That(CartPage.CartBadgeIcon.Displayed, Is.True);
             Assert.That(CartPage.RemoveButton.Text.Trim(), Is.EqualTo("REMOVE"));
         }
-    
-     [Test]
-        public void RemoveProductToCart()
-        {
-            ProductsPage = LoginPage?.Login(RandomUserName, EnvironmentVariables.Password);
 
-            ProductsPage?.AddToCartButton.Click();
-            ProductsPage?.CartBadgeIcon.Click();
-            Assert.That(CartPage?.YourCartTitle.Text, Is.EqualTo(PageTitles.YourCart));
-            Assert.That(CartPage?.CartRemoveButton.Displayed, Is.True);
 
-    
-        var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
-
-        try
-        {
-
-            var removeButton = wait.Until(driver => driver.FindElement(By.XPath("//button[@class='btn_secondary cart_button']")));
-            removeButton.Click();
-
-            
-            wait.Until(driver => int.Parse(driver.FindElement(By.CssSelector(".fa-layers-counter.shopping_cart_badge")).Text) == 0);
-
-           
-            var cartCount = int.Parse(Driver.FindElement(By.CssSelector(".fa-layers-counter.shopping_cart_badge")).Text);
-            Assert.That(cartCount, Is.EqualTo(0), "The cart is not empty after removing the product");
-
-            Console.WriteLine("The cart is empty");
-        }
-        catch (WebDriverTimeoutException e)
-        {
-            Console.WriteLine("Error: " + e.Message);
-        }
-    }
-}
-    
-        }
+        }}
 
     
     

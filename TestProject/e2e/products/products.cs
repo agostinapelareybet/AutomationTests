@@ -24,22 +24,16 @@ namespace TestProject.e2e.products
         {
             ProductsPage?.NavigateProducts(EnvironmentVariables.ProductsUrl);
             ProductsPage?.SortDropdown.Click();
-
             ProductsPage?.HighToLowOption.Click();
         
-   
-          IList<IWebElement>? productPricesElements = ProductsPage?.GetProductPrices();
-          List<decimal> prices = productPricesElements.Select(p => decimal.Parse(p.Text.Replace("$", "").Replace(",", ""))).ToList();
+            IList<IWebElement>? productPricesElements = ProductsPage?.GetProductPrices();
+            List<decimal> prices = productPricesElements.Select(p => decimal.Parse(p.Text.Replace("$", "").Replace(",", ""))).ToList();
 
-    List<decimal> sortedPrices = new List<decimal>(prices);
-    sortedPrices.Sort((a, b) => b.CompareTo(a)); 
+            List<decimal> sortedPrices = new(prices);
+            sortedPrices.Sort((a, b) => b.CompareTo(a)); 
 
 
-    Assert.That(prices, Is.EqualTo(sortedPrices));
-}
-  
-
+            Assert.That(prices, Is.EqualTo(sortedPrices));
         }
-    
-    
-    }
+    }    
+}
