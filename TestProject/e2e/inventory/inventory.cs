@@ -25,15 +25,12 @@ namespace TestProject.e2e.inventory
             Assert.That(removeButtons.Count, Is.EqualTo(0));
         }
 
-        [Test]
+        [Test, Category("Only")]
         public void ProductDetails()
         {
             Driver.Navigate().GoToUrl(EnvironmentVariables.ProductsUrl);
             Assert.That(ProductsPage?.ProductsTitle.Text, Is.EqualTo(PageTitles.Products));
-            var wait = new WebDriverWait(Driver, TimeSpan.FromSeconds(20));
-            var inventoryFirstProductName = wait.Until(driver => driver.FindElement(By.XPath("//div[@class='inventory_item_name' and normalize-space(text())='Sauce Labs Backpack']")));
-
-            inventoryFirstProductName.Click();
+            InventoryPage?.FirstProductName.Click();
             Assert.That(InventoryPage?.AppHeader.Displayed, Is.True);
             Assert.That(InventoryPage.ProductDetails.Text, Is.EqualTo(ProductsPage.ProductName));
         }
