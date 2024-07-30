@@ -56,55 +56,47 @@ namespace TestProject.e2e.products
             Assert.That(prices, Is.EqualTo(sortedPrices));
 
        }
-       
-     [Test]
+        
+      [Test]
+         public void SortProductsLowToHighByNames()
+       {
+            ProductsPage?.NavigateProducts(EnvironmentVariables.ProductsUrl);
+            ProductsPage?.SortDropdown.Click();
+        
+            IList<IWebElement>? productNamesElements = ProductsPage?.GetProductNames();
+            List<string> names = productNamesElements.Select(p => p.Text).ToList();
+          
+            
+ 
+            names.Sort((a,b) => a.CompareTo(b));
+            ProductsPage?.LowToHighName.Click();
+            productNamesElements = ProductsPage?.GetProductNames();
+            List<string> sortedNames = productNamesElements.Select(p => p.Text).ToList();
+    
+ 
+            Assert.That(names, Is.EqualTo(sortedNames));
+
+
+       }
+
+       [Test]
          public void SortProductsHighToLowByNames()
        {
             ProductsPage?.NavigateProducts(EnvironmentVariables.ProductsUrl);
             ProductsPage?.SortDropdown.Click();
-        
-            IList<IWebElement>? productNamesElements = ProductsPage?.GetProductNames();
-            List<string> names = productNamesElements.Select(p => p.Text).ToList();
-            Console.WriteLine("Nombres antes de ser ordenados alfabéticamente:");
-            Console.WriteLine(string.Join(", ", names));
-            
- 
-            names.Sort((a,b) => b.CompareTo(a));
-            ProductsPage?.HighToLowName.Click();
-            Console.WriteLine("Nombres despues de ordenar");
-            Console.WriteLine(string.Join(", ", names));
-            
-            productNamesElements = ProductsPage?.GetProductNames();
-            List<string> sortedNames = productNamesElements.Select(p => p.Text).ToList();
-            Console.WriteLine("Nombres ordenados alfabéticamente de Z a A:");
-            Console.WriteLine(string.Join(", ", sortedNames));
-
- 
-            Assert.That(names, Is.EqualTo(sortedNames));
-        
-       }
-
-       [Test]
-         public void SortProductsHighToLowByNames1()
-       {
-            ProductsPage?.NavigateProducts(EnvironmentVariables.ProductsUrl);
-            ProductsPage?.SortDropdown.Click();
        
             IList<IWebElement>? productNamesElements = ProductsPage?.GetProductNames();
             List<string> names = productNamesElements.Select(p => p.Text).ToList();
-            Console.WriteLine("Nombres antes de ser ordenados alfabéticamente:");
-            Console.WriteLine(string.Join(", ", names));
+        
  
-            names.Sort((a,b) => a.CompareTo(b));
-            Console.WriteLine("Nombres despues de ordenar");
-            Console.WriteLine(string.Join(", ", names));
+            names.Sort((a,b) => b.CompareTo(a));
+      
            
             ProductsPage?.HighToLowName.Click();
             productNamesElements = ProductsPage?.GetProductNames();
            
             List<string> sortedNames = productNamesElements.Select(p => p.Text).ToList();
-            Console.WriteLine("Nombres ordenados alfabéticamente de A a Z:");
-            Console.WriteLine(string.Join(", ", sortedNames));
+
  
  
             Assert.That(sortedNames, Is.EqualTo(names));
