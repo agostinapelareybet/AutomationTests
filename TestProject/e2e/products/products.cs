@@ -24,16 +24,85 @@ namespace TestProject.e2e.products
         {
             ProductsPage?.NavigateProducts(EnvironmentVariables.ProductsUrl);
             ProductsPage?.SortDropdown.Click();
-            ProductsPage?.HighToLowOption.Click();
         
             IList<IWebElement>? productPricesElements = ProductsPage?.GetProductPrices();
             List<decimal> prices = productPricesElements.Select(p => decimal.Parse(p.Text.Replace("$", "").Replace(",", ""))).ToList();
-
-            List<decimal> sortedPrices = new(prices);
-            sortedPrices.Sort((a, b) => b.CompareTo(a)); 
-
+            
+ 
+            prices.Sort((a, b) => b.CompareTo(a));
+            ProductsPage?.HighToLowOption.Click();
+            productPricesElements = ProductsPage?.GetProductPrices();
+            List<decimal> sortedPrices = productPricesElements.Select(p => decimal.Parse(p.Text.Replace("$", "").Replace(",", ""))).ToList();
 
             Assert.That(prices, Is.EqualTo(sortedPrices));
+    
         }
+
+         [Test]
+         public void SortProductsLowToHighByPrices()
+       {
+            ProductsPage?.NavigateProducts(EnvironmentVariables.ProductsUrl);
+            ProductsPage?.SortDropdown.Click();
+        
+            IList<IWebElement>? productPricesElements = ProductsPage?.GetProductPrices();
+            List<decimal> prices = productPricesElements.Select(p => decimal.Parse(p.Text.Replace("$", "").Replace(",", ""))).ToList();
+            
+ 
+            prices.Sort((a,b) => a.CompareTo(b));
+            ProductsPage?.LowToHighOption.Click();
+            productPricesElements = ProductsPage?.GetProductPrices();
+            List<decimal> sortedPrices = productPricesElements.Select(p => decimal.Parse(p.Text.Replace("$", "").Replace(",", ""))).ToList();
+ 
+            Assert.That(prices, Is.EqualTo(sortedPrices));
+
+       }
+        
+      [Test]
+         public void SortProductsLowToHighByNames()
+       {
+            ProductsPage?.NavigateProducts(EnvironmentVariables.ProductsUrl);
+            ProductsPage?.SortDropdown.Click();
+        
+            IList<IWebElement>? productNamesElements = ProductsPage?.GetProductNames();
+            List<string> names = productNamesElements.Select(p => p.Text).ToList();
+          
+            
+ 
+            names.Sort((a,b) => a.CompareTo(b));
+            ProductsPage?.LowToHighName.Click();
+            productNamesElements = ProductsPage?.GetProductNames();
+            List<string> sortedNames = productNamesElements.Select(p => p.Text).ToList();
+    
+ 
+            Assert.That(names, Is.EqualTo(sortedNames));
+
+
+       }
+
+       [Test]
+         public void SortProductsHighToLowByNames()
+       {
+            ProductsPage?.NavigateProducts(EnvironmentVariables.ProductsUrl);
+            ProductsPage?.SortDropdown.Click();
+       
+            IList<IWebElement>? productNamesElements = ProductsPage?.GetProductNames();
+            List<string> names = productNamesElements.Select(p => p.Text).ToList();
+        
+ 
+            names.Sort((a,b) => b.CompareTo(a));
+      
+           
+            ProductsPage?.HighToLowName.Click();
+            productNamesElements = ProductsPage?.GetProductNames();
+           
+            List<string> sortedNames = productNamesElements.Select(p => p.Text).ToList();
+
+ 
+ 
+            Assert.That(sortedNames, Is.EqualTo(names));
+       
+       }
+    
+    
     }    
 }

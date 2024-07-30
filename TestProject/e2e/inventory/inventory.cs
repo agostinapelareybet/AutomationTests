@@ -25,7 +25,7 @@ namespace TestProject.e2e.inventory
             Assert.That(removeButtons.Count, Is.EqualTo(0));
         }
 
-        [Test, Category("Only")]
+        [Test]
         public void ProductDetails()
         {
             Driver.Navigate().GoToUrl(EnvironmentVariables.ProductsUrl);
